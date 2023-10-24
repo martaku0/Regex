@@ -25,15 +25,17 @@ public class MainActivity extends AppCompatActivity {
     private TextView resultText;
 
     private String[] regexArray = {
-            "\\d\\d-\\d\\d\\d",
-            "",
-            "",
-            "",
-            "\\d\\d\\d\\d\\d\\d\\d\\d\\d\\d\\d",
-            "",
-            "",
-            "",
-            ""
+            // ąćęłńóśźżĄĆĘŁŃÓŚŹŻ - ciag polskich znakow
+            // @#$%^&+=! - ciag znakow specjanych
+            "^\\d{2}-\\d{3}$",
+            "^[A-Za-z]+(\\s[A-Za-z]+)?\\s\\d+[A-Za-z]*$",
+            "^(\\+\\d{11}|\\d{9}|\\d{7})$",
+            "^[A-Za-z][A-Za-z0-9]{2,}@[A-Za-z0-9]{3,}+\\.[A-Za-z]{2,}$",
+            "^\\d{11}",
+            "^[a-zA-Z](?=.*\\d)(?=.*[a-zA-Z])\\w+$",
+            "^[A-Za-z]+\\s[A-Za-z]+(-[A-Za-z]+)?$",
+            "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@#$%^&+=!]).{7,}$",
+            "^(?!.*(?:wtf|ftw)).*$" // wtf; ftw
             };
 
     @Override
