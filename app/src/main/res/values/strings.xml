@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Regex</string>
+    <string-array name="spinnerList">
+        <item>zip-code</item>
+        <item>address</item>
+        <item>phone</item>
+        <item>email</item>
+        <item>pesel</item>
+        <item>idcard</item>
+        <item>name&amp;surname</item>
+        <item>password</item>
+        <item>censorship</item>
+    </string-array>
+</resources>
