@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
             "^[A-Za-z]+(\\s[A-Za-z]+)?\\s\\d+[A-Za-z]*$",
             "^(\\+\\d{11}|\\d{9}|\\d{7})$",
             "^[A-Za-z][A-Za-z0-9]{2,}@[A-Za-z0-9]{3,}+\\.[A-Za-z]{2,}$",
-            "^\\d{11}",
+            "^\\d{11}$",
             "^[a-zA-Z](?=.*\\d)(?=.*[a-zA-Z])\\w+$",
             "^[A-Za-z]+\\s[A-Za-z]+(-[A-Za-z]+)?$",
             "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@#$%^&+=!]).{7,}$",
@@ -60,12 +60,29 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 hideKeyboard((Button)v);
                 int checked = (int) spinner.getSelectedItemId();
-                Log.d("checked", String.valueOf(checked));
+                String checkedValue = (String) spinner.getSelectedItem();
                 String text = String.valueOf(editText.getText());
                 String result = "CORRECT";
 
                 if(!Pattern.matches(regexArray[checked], text)){
                     result = "WRONG";
+                }
+                else if(checkedValue.equals("pesel")){
+                    PeselValidator pesel = new PeselValidator(text);
+                    if(!pesel.isValid()){
+                        result = "WRONG";
+                    }
+                    else{
+                        result += " ";
+                        result += pesel.getSex().substring(0,1);
+                    }
+                }
+                else if(checkedValue.equals("zip-code")){
+                    try {
+                        ZipCodeChecker.checkCity(text);
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
                 }
 
                 resultText.setText(result);
