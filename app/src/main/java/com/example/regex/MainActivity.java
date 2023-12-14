@@ -79,7 +79,10 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else if(checkedValue.equals("zip-code")){
                     try {
-                        ZipCodeChecker.checkCity(text);
+                        result = ZipCodeChecker.checkCity(text);
+                        if(result.isEmpty()){
+                            result = "WRONG";
+                        }
                     } catch (Exception e) {
                         throw new RuntimeException(e);
                     }
